@@ -1,0 +1,17 @@
+syntax = "proto3";
+package payment;
+
+message PaymentRequest {
+  string orderId = 1;
+  float amount = 2;
+  string method = 3; // "credit_card", "paypal", etc.
+}
+
+message PaymentResponse {
+  string paymentId = 1;
+  string status = 2; // "success", "failed"
+}
+
+service PaymentService {
+  rpc ProcessPayment(PaymentRequest) returns (PaymentResponse);
+}

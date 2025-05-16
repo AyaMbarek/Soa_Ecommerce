@@ -1,0 +1,31 @@
+syntax = "proto3";
+package order;
+
+import "user.proto";
+
+message Order {
+  string id = 1;
+  string userId = 2;
+  repeated string productIds = 3;
+  float total = 4;
+  string status = 5; // ex: "pending", "paid", "shipped"
+}
+
+message OrderId {
+  string id = 1;
+}
+
+message CreateOrderRequest {
+  string userId = 1;
+  repeated string productIds = 2;
+}
+
+message OrderList {
+  repeated Order orders = 1;
+}
+
+service OrderService {
+  rpc CreateOrder(CreateOrderRequest) returns (Order);
+  rpc GetOrder(OrderId) returns (Order);
+  rpc ListOrdersByUser(UserId) returns (OrderList);
+}

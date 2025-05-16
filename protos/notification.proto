@@ -1,0 +1,15 @@
+syntax = "proto3";
+package notification;
+
+message Notification {
+  string userId = 1;
+  string email = 2;
+  string subject = 3;
+  string message = 4;
+}
+
+message Empty {}
+
+service NotificationService {
+  rpc SendNotification(Notification) returns (Empty);
+}
